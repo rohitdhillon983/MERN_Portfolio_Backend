@@ -60,7 +60,7 @@ exports.register=catchAsyncErrors(async(req,res,next)=>{
     const options = {expires:new Date(Date.now() + 3*24*60*60*1000),
     httpOnly:true,
     }
-    res.cookie("token",token,options).status(200).json({
+    res.cookies("token",token,options).status(200).json({
     success:true,
     token,
     user,
@@ -382,7 +382,7 @@ exports.login = catchAsyncErrors(async(req,res)=>{
     const options = {expires:new Date(Date.now() + 3*24*60*60*1000),
     httpOnly:true,
     }
-    res.cookie("token",token,options).status(200).json({
+    res.cookies("token",token,options).status(200).json({
     success:true,
     token,
     user,
@@ -393,7 +393,7 @@ exports.login = catchAsyncErrors(async(req,res)=>{
 
 // -----------------------------------------user logout------------------------------------
 exports.logout = catchAsyncErrors(async(req,res,next)=>{
-    res.status(200).cookie("token","",{
+    res.status(200).cookies("token","",{
         expires:new Date(Date.now()),
         httpOnly:true,
         sameSite:"None",
