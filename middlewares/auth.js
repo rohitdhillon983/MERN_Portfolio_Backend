@@ -5,7 +5,7 @@ require("dotenv").config();
 
 exports.isAuthenticated = catchAsyncErrors(async(req,res,next)=>{
     try {
-        const {token} = req.cookie || req.cookie.token || req.body.token;
+        const {token} = req.Cookies || req.Cookies.token || req.body.token;
         if(!token){
             return res.status(400).json({
                 success:false,
