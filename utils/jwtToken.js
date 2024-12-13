@@ -10,7 +10,7 @@ exports.generateToken = (user, message,statusCode,res)=>{
     res.status(statusCode).cookie("token",token,{
         expires:new Date(Date.now() + process.env.COOKIE_EXPIRES*24*60*60*1000),
         httpOnly:true,
-        sameSite:"None",
+        SameSite:"None",
         secure:true,
     })
     .json({
