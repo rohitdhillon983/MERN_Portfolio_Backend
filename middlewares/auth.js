@@ -5,7 +5,8 @@ require("dotenv").config();
 
 exports.isAuthenticated = catchAsyncErrors(async(req,res,next)=>{
     try {
-        const {token} = req.cookie || req.cookie.token || req.body.token;
+        const {token} = req.cookies || req.cookies.token || req.body.token;
+        console.log("token",token)
         if(!token){
             return res.status(400).json({
                 success:false,
@@ -13,7 +14,7 @@ exports.isAuthenticated = catchAsyncErrors(async(req,res,next)=>{
             })
         }
         const decoded = jwt.verify(token,process.env.JWT_SECRET_KEY);
-        console.log(decoded)
+        console.log("decoded",decoded)
         req.user = await User.findById(decoded.id);
         next();
     } catch (error) {
