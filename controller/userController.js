@@ -379,7 +379,7 @@ exports.login = catchAsyncErrors(async(req,res)=>{
 
     // const sendOTP = this.sendotp()
     // create cookie and send response
-    const options = {expires:new Date(Date.now() + 3*24*60*60*1000),
+    const options = {expires:new Date(Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
     httpOnly:true,
     }
     res.cookie("token",token,options).status(200).json({
