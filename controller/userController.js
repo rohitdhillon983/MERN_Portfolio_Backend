@@ -57,8 +57,10 @@ exports.register=catchAsyncErrors(async(req,res,next)=>{
     user.password=undefined;
 
     // create cookie and send response
-    const options = {expires:new Date(Date.now() + 3*24*60*60*1000),
+    const options = {expires:new Date(Date.now() +process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000 ),
     httpOnly:true,
+    sameSite:"None",
+    secure:true
     }
     res.cookie("token",token,options).status(200).json({
     success:true,
@@ -381,6 +383,8 @@ exports.login = catchAsyncErrors(async(req,res)=>{
     // create cookie and send response
     const options = {expires:new Date(Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
     httpOnly:true,
+    sameSite:"None",
+    secure:true
     }
     res.cookie("token",token,options).status(200).json({
     success:true,
