@@ -15,7 +15,7 @@ const projectRoutes = require("./router/projectRouters")
 const experienceRoutes = require("./router/experienceRoutes")
 
 app.use(cors({
-    origin:[process.env.PORTFOLIO_URL,process.env.DASHBORD_URL],
+    origin:[process.env.PORTFOLIO_URL_LOCAL,process.env.PORTFOLIO_URL,process.env.DASHBORD_URL_LOCAL,process.env.DASHBORD_URL],
     methods:["GET","POST","DELETE","PUT"],
     credentials:true,
 }));
